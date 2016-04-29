@@ -26,7 +26,7 @@ using command below to execute midje test
 boot midje
 ```
 
-## relase history
+## release history
 
 * 0.1.0  first version
 
