@@ -6,7 +6,7 @@
 
 (task-options!
   pom {:project     'zhuangxm/boot-midje
-       :version     "0.1.0"
+       :version     "0.1.1"
        :description "Boot task to execute midje test."
        :url         "https://github.com/zhuangxm/boot-midje"
        :scm         {:url "https://github.com/zhuangxm/boot-midje"}

@@ -6,6 +6,12 @@
 ;; by Michal Buczko http://hoplon.discoursehosting.net/users/mbuczko
 ;;add throw exception when midje test failure to make boot-clj failure too.
 
+(defn failure-count [lines]
+  (reduce (fn [[fail-count error-count] line]
+            [(+ fail-count (if (re-matches #"\e(.*?)FAIL\e.*" line) 1 0))
+             (+ error-count (if (re-matches #"\e(.*?)ERROR\e.*" line) 1 0))] )
+          [0 0] lines))
+
 (deftask midje
          "Run midje tests in boot."
          [f filters FILTER edn "midje filters. Only facts matching one or more of the arguments are loaded. Filter arguments:
@@ -22,11 +28,9 @@
                                                                   (with-out-str
                                                                     (binding [clojure.test/*test-out* *out*]
                                                                       (midje.repl/load-facts ~filters))))
-                                failure-line (->> result-str
-                                                  (clojure.string/split-lines)
-                                                  (last))]
+                                [fail-count error-count] (failure-count (clojure.string/split-lines result-str))]
                             (println result-str)
-                            (when-let [[_ error-count success-count] (re-matches #".*FAILURE:.*? (\d+) checks failed\.\s+\(But (\d+) succeeded\.\).*" failure-line)]
-                              (throw (ex-info "midje test failure." {:failed   (Integer/parseInt error-count)
-                                                                     :succeeded (Integer/parseInt success-count)}))))
+                            (when (or (> fail-count 0) (> error-count 0))
+                              (throw (ex-info "midje test failure." {:failed  fail-count
+                                                                     :error error-count}))))
                           fileset)))
