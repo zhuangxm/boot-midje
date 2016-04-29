@@ -27,7 +27,7 @@ boot midje
 ```
 
 ## release history
-
+* 0.1.1 add clojure.test support
 * 0.1.0  first version
 
 ## License
