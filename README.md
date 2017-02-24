@@ -14,7 +14,7 @@ This plugin will throw exception when midje test failed to make boot-clj failure
 ## Usage
 
 ````clj
-(set-env! :dependencies '[[zhuangxm/boot-midje "0.1.0" :scope "test"]])
+(set-env! :dependencies '[[zhuangxm/boot-midje "0.1.1" :scope "test"]])
 
 (require '[zhuangxm.boot-midje :refer [midje]])
 
