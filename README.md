@@ -30,7 +30,7 @@ boot watch speak midje
 ```
 
 ## release history
-* 0.1.2 使用 tools.namespace refresh 来自动更新测试
+* 0.1.2 base on tools.namespace refresh to enabled auto test.
 * 0.1.1 add clojure.test support
 * 0.1.0  first version
 
