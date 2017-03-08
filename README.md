@@ -14,7 +14,7 @@ This plugin will throw exception when midje test failed to make boot-clj failure
 ## Usage
 
 ````clj
-(set-env! :dependencies '[[zhuangxm/boot-midje "0.1.1" :scope "test"]])
+(set-env! :dependencies '[[zhuangxm/boot-midje "0.1.2" :scope "test"]])
 
 (require '[zhuangxm.boot-midje :refer [midje]])
 
@@ -24,9 +24,13 @@ using command below to execute midje test
 
 ```bash
 boot midje
+
+;;auto refresh test
+boot watch speak midje
 ```
 
 ## release history
+* 0.1.2 使用 tools.namespace refresh 来自动更新测试
 * 0.1.1 add clojure.test support
 * 0.1.0  first version
 
